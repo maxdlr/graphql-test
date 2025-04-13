@@ -17,6 +17,6 @@ public class UserController {
 
   @QueryMapping
   public List<User> users() {
-    return User.users;
+    return User.users();
   }
 }

@@ -1,6 +1,6 @@
 package com.maxdlr.graphql_test.graphqlserver;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,13 +9,17 @@ public record Team(
     String name,
     String createdAt) {
 
-  public static List<Team> teams = Arrays.asList(
-      new Team(1, "First team", new Date().toString()),
-      new Team(2, "Second team", new Date().toString()),
-      new Team(3, "Third team", new Date().toString()));
+  public static List<Team> teams() {
+    List<Team> teams = new ArrayList<>();
+    for (int i = 0; i < 100; i++) {
+      Team team = new Team(i, "teamname - " + i, new Date().toString());
+      teams.add(team);
+    }
+    return teams;
+  }
 
   public static Team teamById(Integer id) {
-    return teams.stream().filter(team -> team.id().equals(id)).findFirst().orElse(null);
+    return teams().stream().filter(team -> team.id().equals(id)).findFirst().orElse(null);
   }
 
 }

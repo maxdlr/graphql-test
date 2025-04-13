@@ -17,6 +17,6 @@ public class TeamController {
 
   @QueryMapping
   public List<Team> teams() {
-    return Team.teams;
+    return Team.teams();
   }
 }
