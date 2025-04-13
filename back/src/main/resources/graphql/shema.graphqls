@@ -1,5 +1,7 @@
 type Query {
-  tasks: [User]
+  userById(id: ID): User
+  teamById(id: ID): Team
+  users: [User]
   teams: [Team]
 }
 

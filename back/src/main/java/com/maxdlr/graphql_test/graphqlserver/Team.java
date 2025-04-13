@@ -12,9 +12,9 @@ public record Team(
   public static List<Team> teams = Arrays.asList(
       new Team(1, "First team", new Date().toString()),
       new Team(2, "Second team", new Date().toString()),
-      new Team(3, "Second team", new Date().toString()));
+      new Team(3, "Third team", new Date().toString()));
 
-  public static Team getById(Integer id) {
+  public static Team teamById(Integer id) {
     return teams.stream().filter(team -> team.id().equals(id)).findFirst().orElse(null);
   }
 

@@ -6,17 +6,17 @@ import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
-import com.maxdlr.graphql_test.graphqlserver.Team;
+import com.maxdlr.graphql_test.graphqlserver.User;
 
 @Controller
-public class TeamController {
+public class UserController {
   @QueryMapping
-  public Team teamById(@Argument Integer id) {
-    return Team.teamById(id);
+  public User userById(@Argument Integer id) {
+    return User.userById(id);
   }
 
   @QueryMapping
-  public List<Team> teams() {
-    return Team.teams;
+  public List<User> users() {
+    return User.users;
   }
 }
