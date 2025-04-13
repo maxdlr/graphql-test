@@ -1,8 +1,22 @@
 type Query {
-  userById(id: ID): User
-  teamById(id: ID): Team
-  users: [User]
-  teams: [Team]
+  GetUser(id: ID): User
+  GetTeam(id: ID): Team
+  GetAllUsers: [User]!
+  GetAllTeams: [Team]!
+}
+
+type Mutation {
+  CreateUser(user: UserInput): User!
+  CreateTeam(team: TeamInput): Team!
+}
+
+input UserInput {
+  username: String,
+  team: TeamInput,
+}
+
+input TeamInput {
+  name: String,
 }
 
 type Team {
