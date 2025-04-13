@@ -1,0 +1,17 @@
+type Query {
+  tasks: [User]
+  teams: [Team]
+}
+
+type Team {
+  id: ID,
+  name: String,
+  createdAt: String
+}
+
+type User {
+  id: ID,
+  username: String,
+  team: Team,
+  createdAt: String
+}
