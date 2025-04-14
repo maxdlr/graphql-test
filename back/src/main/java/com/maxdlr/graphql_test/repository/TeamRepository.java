@@ -12,10 +12,9 @@ import com.maxdlr.graphql_test.model.TeamModel.*;
  */
 public interface TeamRepository extends Repository<TeamEntity, Long> {
 
-  List<Team> findAll();
+  List<TeamEntity> findAll();
 
-  Team findOneById(long id);
+  TeamEntity findOneById(long id);
 
-  Team save(TeamInput team);
-
+  TeamEntity save(TeamInput team);
 }

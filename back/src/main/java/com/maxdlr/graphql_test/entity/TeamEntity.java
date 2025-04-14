@@ -2,20 +2,22 @@ package com.maxdlr.graphql_test.entity;
 
 import java.util.Date;
 
-import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+@EqualsAndHashCode
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 public class TeamEntity {
 
-  @Generated(value = { "id" })
+  @GeneratedValue
   @Id
   private Long id;
 

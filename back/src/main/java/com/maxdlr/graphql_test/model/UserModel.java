@@ -3,10 +3,10 @@ package com.maxdlr.graphql_test.model;
 import static com.maxdlr.graphql_test.model.TeamModel.*;
 
 public class UserModel {
-  public static record User(
+  public static record UserInfo(
       Integer id,
       String username,
-      Team team,
+      TeamInfo team,
       String createdAt) {
   }
 

@@ -7,6 +7,7 @@ import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
+import com.maxdlr.graphql_test.entity.TeamEntity;
 import com.maxdlr.graphql_test.repository.TeamRepository;
 
 import static com.maxdlr.graphql_test.model.TeamModel.*;
@@ -20,17 +21,17 @@ public class TeamController {
   }
 
   @QueryMapping
-  public Team GetTeam(@Argument Integer id) {
+  public TeamEntity GetTeam(@Argument Integer id) {
     return this.teamRepository.findOneById((long) id);
   }
 
   @QueryMapping
-  public List<Team> GetAllTeams() {
+  public List<TeamEntity> GetAllTeams() {
     return this.teamRepository.findAll();
   }
 
   @MutationMapping
-  public Team CreateTeam(@Argument TeamInput team) {
+  public TeamEntity CreateTeam(@Argument TeamInput team) {
     return this.teamRepository.save(team);
   }
 }

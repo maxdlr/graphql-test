@@ -7,35 +7,38 @@ import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
-import static com.maxdlr.graphql_test.model.UserModel.*;
-import static com.maxdlr.graphql_test.model.TeamModel.*;
-import com.maxdlr.graphql_test.repository.UserRepository;
 import com.maxdlr.graphql_test.entity.UserEntity;
+import com.maxdlr.graphql_test.mapper.UserMapper;
+import com.maxdlr.graphql_test.model.UserModel.UserInfo;
+import com.maxdlr.graphql_test.model.UserModel.UserInput;
+import com.maxdlr.graphql_test.repository.UserRepository;
+import com.maxdlr.graphql_test.service.UserService;
 
 @Controller
 public class UserController {
   private UserRepository userRepository;
+  private UserMapper userMapper;
+  private UserService userService;
 
-  public UserController(UserRepository userRepository) {
+  public UserController(UserRepository userRepository, UserMapper userMapper, UserService userService) {
     this.userRepository = userRepository;
+    this.userMapper = userMapper;
+    this.userService = userService;
   }
 
   @QueryMapping
-  public UserEntity GetUser(@Argument Integer id) {
-
-    this.userRepository.save(new UserInput("Maxime", new TeamInput("my team")));
-
-    return this.userRepository.findOnById((long) id);
+  public UserInfo GetUser(@Argument Integer id) {
+    return this.userService.getInfo(Long.valueOf(id));
   }
 
   @QueryMapping
-  public List<UserEntity> GetAllUsers() {
-    return this.userRepository.findAll();
+  public List<UserInfo> GetAllUsers() {
+    return this.userService.getAllInfo();
   }
 
   @MutationMapping()
   public UserEntity CreateUser(
       @Argument UserInput user) {
-    return this.userRepository.save(user);
+    return this.userService.create(user);
   }
 }
