@@ -12,7 +12,7 @@ type Mutation {
 
 input UserInput {
   username: String,
-  team: TeamInput,
+  teamId: ID,
 }
 
 input TeamInput {
