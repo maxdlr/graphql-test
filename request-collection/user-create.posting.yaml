@@ -4,7 +4,7 @@ url: http://localhost:8080/graphql
 body:
   content: |-
     {
-      "query": "mutation CreateUser { CreateUser(username: Polygone)}"
+      "query": "mutation CreateUser { CreateUser(user: { username: \"Polygone\"}) { id username team { id name createdAt } createdAt } }"
     }
   content_type: application/json
 headers:

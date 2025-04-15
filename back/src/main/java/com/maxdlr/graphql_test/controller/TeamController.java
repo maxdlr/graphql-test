@@ -7,31 +7,30 @@ import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
-import com.maxdlr.graphql_test.entity.TeamEntity;
-import com.maxdlr.graphql_test.repository.TeamRepository;
-
-import static com.maxdlr.graphql_test.model.TeamModel.*;
+import com.maxdlr.graphql_test.model.TeamModel.TeamInfo;
+import com.maxdlr.graphql_test.model.TeamModel.TeamInput;
+import com.maxdlr.graphql_test.service.TeamService;
 
 @Controller
 public class TeamController {
-  private TeamRepository teamRepository;
+  private TeamService teamService;
 
-  public TeamController(TeamRepository teamRepository) {
-    this.teamRepository = teamRepository;
+  public TeamController(TeamService teamService) {
+    this.teamService = teamService;
   }
 
   @QueryMapping
-  public TeamEntity GetTeam(@Argument Integer id) {
-    return this.teamRepository.findOneById((long) id);
+  public TeamInfo GetTeam(@Argument Integer id) {
+    return this.teamService.getInfo((long) id);
   }
 
   @QueryMapping
-  public List<TeamEntity> GetAllTeams() {
-    return this.teamRepository.findAll();
+  public List<TeamInfo> GetAllTeams() {
+    return this.teamService.getAllInfo();
   }
 
   @MutationMapping
-  public TeamEntity CreateTeam(@Argument TeamInput team) {
-    return this.teamRepository.save(team);
+  public TeamInfo CreateTeam(@Argument TeamInput team) {
+    return this.teamService.create(team);
   }
 }
