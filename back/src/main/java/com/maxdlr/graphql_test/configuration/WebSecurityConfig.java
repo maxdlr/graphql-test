@@ -16,7 +16,7 @@ public class WebSecurityConfig {
     return http
         .authorizeHttpRequests((authorize) -> authorize.anyRequest().permitAll())
         .cors(cors -> cors.configurationSource(
-            request -> {
+            _ -> {
               var corsConfiguration = new CorsConfiguration();
               corsConfiguration.setAllowedOriginPatterns(List.of("*"));
               corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));

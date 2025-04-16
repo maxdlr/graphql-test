@@ -3,20 +3,34 @@ package com.maxdlr.graphql_test.controller;
 import java.util.List;
 
 import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
-import com.maxdlr.graphql_test.graphqlserver.Team;
+import com.maxdlr.graphql_test.model.TeamModel.TeamInfo;
+import com.maxdlr.graphql_test.model.TeamModel.TeamInput;
+import com.maxdlr.graphql_test.service.TeamService;
 
 @Controller
 public class TeamController {
-  @QueryMapping
-  public Team teamById(@Argument Integer id) {
-    return Team.getById(id);
+  private TeamService teamService;
+
+  public TeamController(TeamService teamService) {
+    this.teamService = teamService;
   }
 
   @QueryMapping
-  public List<Team> teams(@Argument Integer id) {
-    return Team.teams;
+  public TeamInfo GetTeam(@Argument Integer id) {
+    return this.teamService.getInfo((long) id);
+  }
+
+  @QueryMapping
+  public List<TeamInfo> GetAllTeams() {
+    return this.teamService.getAllInfo();
+  }
+
+  @MutationMapping
+  public TeamInfo CreateTeam(@Argument TeamInput team) {
+    return this.teamService.create(team);
   }
 }

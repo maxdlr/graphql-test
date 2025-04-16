@@ -1,11 +1,10 @@
-name: teams
-description: Get all teams
+name: user create
 method: POST
 url: http://localhost:8080/graphql
 body:
   content: |-
     {
-      "query": "query GetAllTeams { GetAllTeams { id name createdAt } }"
+      "query": "mutation CreateUser { CreateUser(user: { username: \"Polygone\", teamId: 1}) { id username team { id name createdAt } createdAt } }"
     }
   content_type: application/json
 headers:

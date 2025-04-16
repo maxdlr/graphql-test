@@ -1,11 +1,11 @@
-name: teams
-description: Get all teams
+name: user by id
+description: Get all users
 method: POST
 url: http://localhost:8080/graphql
 body:
   content: |-
     {
-      "query": "query GetAllTeams { GetAllTeams { id name createdAt } }"
+      "query": "query GetUser { GetUser(id: 1) { id username team {id name createdAt} createdAt }}"
     }
   content_type: application/json
 headers:
