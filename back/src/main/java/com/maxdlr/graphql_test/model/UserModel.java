@@ -12,6 +12,10 @@ public class UserModel {
 
   public static record UserInput(
       String username,
-      TeamInput team) {
+      Integer teamId) {
+
+    public Integer getTeamId() {
+      return teamId;
+    }
   }
 }
