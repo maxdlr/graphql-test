@@ -1,13 +1,16 @@
 type Query {
   GetUser(id: ID): UserInfo
   GetTeam(id: ID): TeamInfo
+  GetTask(id: ID): TaskInfo
   GetAllUsers: [UserInfo]!
   GetAllTeams: [TeamInfo]!
+  GetAllTasks: [TaskInfo]!
 }
 
 type Mutation {
   CreateUser(user: UserInput): UserInfo!
   CreateTeam(team: TeamInput): TeamInfo!
+  CreateTask(task: TaskInput): TaskInfo!
 }
 
 input UserInput {
@@ -19,15 +22,31 @@ input TeamInput {
   name: String,
 }
 
+input TaskInput {
+  title: String,
+  description: String, 
+  teamId: ID,
+  type: String
+}
+
 type TeamInfo {
   id: ID,
   name: String,
-  createdAt: String
+  createdAt: String,
 }
 
 type UserInfo{
   id: ID,
   username: String,
   team: TeamInfo,
+  createdAt: String
+}
+
+type TaskInfo {
+  id: ID,
+  title: String,
+  description: String, 
+  teamId: ID,
+  type: String
   createdAt: String
 }

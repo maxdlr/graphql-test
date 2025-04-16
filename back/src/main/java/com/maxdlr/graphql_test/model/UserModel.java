@@ -8,6 +8,13 @@ public class UserModel {
       String username,
       TeamInfo team,
       String createdAt) {
+    public TeamInfo getTeam() {
+      return team;
+    }
+
+    public Integer getId() {
+      return id;
+    }
   }
 
   public static record UserInput(

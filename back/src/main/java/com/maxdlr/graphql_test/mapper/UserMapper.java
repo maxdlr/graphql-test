@@ -1,5 +1,7 @@
 package com.maxdlr.graphql_test.mapper;
 
+import java.util.List;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,9 @@ public abstract class UserMapper implements EntityMapper<UserInfo, UserInput, Us
   @Autowired
   TeamRepository teamRepository;
 
-  @Mapping(target = "team", expression = "java(this.teamRepository.findOneById((long) recordInput.getTeamId()))")
-  public abstract UserEntity toEntityFromInput(UserInput recordInput);
+  @Mapping(target = "team", expression = "java(this.teamRepository.findOneById((long) userInput.getTeamId()))")
+  public abstract UserEntity toEntityFromInput(UserInput userInput);
+
+  @Mapping(target = "team", expression = "java(this.teamRepository.findOneById((long) userInfo.getTeam().getId()))")
+  public abstract UserEntity toEntityFromInfo(UserInfo userInfo);
 }
