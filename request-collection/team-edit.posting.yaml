@@ -1,0 +1,12 @@
+name: team edit
+method: POST
+url: http://localhost:8080/graphql
+body:
+  content: |-
+    {
+      "query": "mutation UpdateTeam { UpdateTeam( team: { id: 1, name: \"my new team is edited now hehe\" } ) { id name createdAt } }"
+    }
+  content_type: application/json
+headers:
+- name: content-type
+  value: application/json

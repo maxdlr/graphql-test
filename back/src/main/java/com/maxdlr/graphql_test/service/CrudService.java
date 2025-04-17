@@ -6,8 +6,8 @@ import com.maxdlr.graphql_test.mapper.EntityMapper;
 import com.maxdlr.graphql_test.repository.CrudRepository;
 
 public class CrudService<Repository extends CrudRepository<Entity>, Mapper extends EntityMapper<Info, Input, Entity>, Entity, Info, Input> {
-  private final Repository repository;
-  private final Mapper mapper;
+  protected final Repository repository;
+  protected Mapper mapper;
 
   public CrudService(final Repository repository, final Mapper mapper) {
     this.repository = repository;

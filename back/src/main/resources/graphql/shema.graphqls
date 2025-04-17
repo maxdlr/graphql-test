@@ -8,9 +8,10 @@ type Query {
 }
 
 type Mutation {
-  CreateUser(user: UserInput): UserInfo!
-  CreateTeam(team: TeamInput): TeamInfo!
-  CreateTask(task: TaskInput): TaskInfo!
+  CreateUser(user: UserInput): UserInfo
+  CreateTeam(team: TeamInput): TeamInfo
+  CreateTask(task: TaskInput): TaskInfo
+  UpdateTeam(team: TeamInput): TeamInfo
 }
 
 input UserInput {
@@ -20,6 +21,7 @@ input UserInput {
 }
 
 input TeamInput {
+  id: ID
   name: String
 }
 
