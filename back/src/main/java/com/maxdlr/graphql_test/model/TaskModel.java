@@ -15,6 +15,10 @@ public class TaskModel {
     public Integer getId() {
       return id;
     }
+
+    public TeamInfo getTeam() {
+      return team;
+    }
   }
 
   public record TaskInput(

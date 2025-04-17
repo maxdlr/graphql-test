@@ -13,25 +13,25 @@ import com.maxdlr.graphql_test.service.TaskService;
 
 @Controller
 public class TaskController {
-  private TaskService userService;
+  private TaskService taskService;
 
-  public TaskController(TaskService userService) {
-    this.userService = userService;
+  public TaskController(TaskService taskService) {
+    this.taskService = taskService;
   }
 
   @QueryMapping
   public TaskInfo GetTask(@Argument Integer id) {
-    return this.userService.getInfo(Long.valueOf(id));
+    return this.taskService.getInfo(Long.valueOf(id));
   }
 
   @QueryMapping
   public List<TaskInfo> GetAllTasks() {
-    return this.userService.getAllInfo();
+    return this.taskService.getAllInfo();
   }
 
   @MutationMapping()
   public TaskInfo CreateTask(
-      @Argument TaskInput user) {
-    return this.userService.create(user);
+      @Argument TaskInput task) {
+    return this.taskService.create(task);
   }
 }

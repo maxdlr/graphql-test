@@ -13,6 +13,9 @@ public abstract class TaskMapper implements EntityMapper<TaskInfo, TaskInput, Ta
   @Autowired
   TeamRepository teamRepository;
 
-  @Mapping(target = "team", expression = "java(this.teamRepository.findOneById((long) recordInput.getTeamId()))")
-  public abstract TaskEntity toEntityFromInput(TaskInput recordInput);
+  @Mapping(target = "team", expression = "java(this.teamRepository.findOneById((long) taskInput.getTeamId()))")
+  public abstract TaskEntity toEntityFromInput(TaskInput taskInput);
+
+  @Mapping(target = "team", expression = "java(this.teamRepository.findOneById((long) taskInfo.getTeam().getId()))")
+  public abstract TaskEntity toEntityFromInfo(TaskInfo taskInfo);
 }
