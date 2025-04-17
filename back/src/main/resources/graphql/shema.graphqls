@@ -16,6 +16,7 @@ type Mutation {
 input UserInput {
   username: String
   teamId: ID
+  taskTypes: [String]
 }
 
 input TeamInput {
@@ -39,6 +40,7 @@ type UserInfo {
   id: ID
   username: String
   team: TeamInfo
+  taskTypes: [String]
   createdAt: String
 }
 

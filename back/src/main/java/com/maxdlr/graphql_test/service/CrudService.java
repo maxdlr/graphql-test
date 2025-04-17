@@ -5,33 +5,30 @@ import java.util.List;
 import com.maxdlr.graphql_test.mapper.EntityMapper;
 import com.maxdlr.graphql_test.repository.CrudRepository;
 
-/**
- * CrudService
- */
-public class CrudService<EntityRepository extends CrudRepository<Entity>, Entity, Info, Input> {
-  private final EntityRepository EntityRepository;
-  private final EntityMapper<Info, Input, Entity> Mapper;
+public class CrudService<Repository extends CrudRepository<Entity>, Mapper extends EntityMapper<Info, Input, Entity>, Entity, Info, Input> {
+  private final Repository repository;
+  private final Mapper mapper;
 
-  public CrudService(final EntityRepository EntityRepository, final EntityMapper<Info, Input, Entity> Mapper) {
-    this.EntityRepository = EntityRepository;
-    this.Mapper = Mapper;
+  public CrudService(final Repository repository, final Mapper mapper) {
+    this.repository = repository;
+    this.mapper = mapper;
   }
 
   public Entity getEntity(final Long id) {
-    return this.EntityRepository.findOneById((long) id);
+    return this.repository.findOneById((long) id);
   }
 
   public Info getInfo(final Long id) {
-    return this.Mapper.toRecordInfo(this.getEntity(id));
+    return this.mapper.toRecordInfo(this.getEntity(id));
   }
 
   public List<Info> getAllInfo() {
-    return this.Mapper.toRecordInfo(this.EntityRepository.findAll());
+    return this.mapper.toRecordInfo(this.repository.findAll());
   }
 
   public Info create(final Input input) {
-    final Entity newEntity = this.Mapper.toEntityFromInput(input);
-    this.EntityRepository.save(newEntity);
-    return this.Mapper.toRecordInfo(newEntity);
+    final Entity newEntity = this.mapper.toEntityFromInput(input);
+    this.repository.save(newEntity);
+    return this.mapper.toRecordInfo(newEntity);
   }
 }

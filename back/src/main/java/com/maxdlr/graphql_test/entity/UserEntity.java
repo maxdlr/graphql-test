@@ -1,6 +1,8 @@
 package com.maxdlr.graphql_test.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,6 +30,8 @@ public class UserEntity {
 
   @ManyToOne
   private TeamEntity team;
+
+  private List<String> taskTypes = new ArrayList<>();
 
   private Date createdAt;
 }
