@@ -1,5 +1,7 @@
 package com.maxdlr.graphql_test.controller;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.graphql.data.method.annotation.Argument;
@@ -33,5 +35,11 @@ public class UserController {
   public UserInfo CreateUser(
       @Argument UserInput user) {
     return this.userService.create(user);
+  }
+
+  @MutationMapping()
+  public UserInfo UpdateUser(
+      @Argument UserInput user) throws Exception {
+    return this.userService.update(user);
   }
 }

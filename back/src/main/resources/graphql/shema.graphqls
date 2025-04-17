@@ -12,9 +12,11 @@ type Mutation {
   CreateTeam(team: TeamInput): TeamInfo
   CreateTask(task: TaskInput): TaskInfo
   UpdateTeam(team: TeamInput): TeamInfo
+  UpdateUser(user: UserInput): UserInfo
 }
 
 input UserInput {
+  id: ID
   username: String
   teamId: ID
   taskTypes: [String]

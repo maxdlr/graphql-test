@@ -1,0 +1,12 @@
+name: user edit
+method: POST
+url: http://localhost:8080/graphql
+body:
+  content: |2-
+        {
+      "query": "mutation UpdateUser { UpdateUser(user: { id: 1, username: \"Polygone is now edited\", teamId: 2, taskTypes: [\"pull-request\"]}) { id username team { id name createdAt } taskTypes createdAt } }"
+    }
+  content_type: application/json
+headers:
+- name: content-type
+  value: application/json

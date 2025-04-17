@@ -1,7 +1,11 @@
 package com.maxdlr.graphql_test.service;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 import org.springframework.stereotype.Service;
 
+import com.maxdlr.graphql_test.entity.TeamEntity;
 import com.maxdlr.graphql_test.entity.UserEntity;
 import com.maxdlr.graphql_test.mapper.UserMapper;
 import com.maxdlr.graphql_test.model.UserModel.UserInfo;
@@ -9,8 +13,46 @@ import com.maxdlr.graphql_test.model.UserModel.UserInput;
 import com.maxdlr.graphql_test.repository.UserRepository;
 
 @Service
-public class UserService extends CrudService<UserRepository, UserMapper, UserEntity, UserInfo, UserInput> {
-  public UserService(UserRepository repository, UserMapper mapper) {
+public class UserService extends CrudService<UserRepository, UserMapper, UserEntity, UserInfo, UserInput>
+    implements CrudServiceInterface<UserInfo, UserInput> {
+
+  private final TeamService teamService;
+
+  public UserService(final UserRepository repository, final UserMapper mapper, final TeamService teamService) {
     super(repository, mapper);
+    this.teamService = teamService;
+  }
+
+  public UserInfo update(final UserInput input) throws Exception {
+
+    if (input.getId() == null) {
+      throw new Exception("The input doesn't have an id");
+    }
+
+    final UserEntity user = this.repository.findOneById(input.getId());
+
+    if (user == null) {
+      throw new Exception("The requested user is not found");
+    }
+
+    if (input.getUsername() != null) {
+      user.setUsername(input.getUsername());
+    }
+
+    if (!input.getTaskTypes().isEmpty()) {
+      user.setTaskTypes(input.getTaskTypes());
+    }
+
+    if (input.getTeamId() != null) {
+      final TeamEntity team = this.teamService.getEntity((long) input.getTeamId());
+      if (team == null) {
+        throw new Exception("The input's team is not found");
+      }
+      user.setTeam(team);
+    }
+
+    final UserEntity savedUser = this.repository.save(user);
+
+    return this.mapper.toRecordInfo(user);
   }
 }

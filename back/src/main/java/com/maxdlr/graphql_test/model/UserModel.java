@@ -21,9 +21,29 @@ public class UserModel {
   }
 
   public static record UserInput(
+      Integer id,
       String username,
       List<String> taskTypes,
       Integer teamId) {
+    public Integer getId() {
+      return id;
+    }
+
+    public String getUsername() {
+      return username;
+    }
+
+    public List<String> getTaskTypes() {
+      return taskTypes;
+    }
+
+    public void addTaskType(String type) {
+      taskTypes.add(type);
+    }
+
+    public void removeTaskType(String type) {
+      taskTypes.removeIf(listType -> listType == type);
+    }
 
     public Integer getTeamId() {
       return teamId;
