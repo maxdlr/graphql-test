@@ -1,4 +1,4 @@
-package com.maxdlr.graphql_test.controller;
+package com.maxdlr.graphql_test.controller.models;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 
 import com.maxdlr.graphql_test.model.TeamModel.TeamInfo;
 import com.maxdlr.graphql_test.model.TeamModel.TeamInput;
-import com.maxdlr.graphql_test.service.TeamService;
+import com.maxdlr.graphql_test.service.models.TeamService;
 
 @Controller
 public class TeamController {

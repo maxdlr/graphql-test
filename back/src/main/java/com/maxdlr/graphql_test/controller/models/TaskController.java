@@ -1,4 +1,4 @@
-package com.maxdlr.graphql_test.controller;
+package com.maxdlr.graphql_test.controller.models;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 
 import com.maxdlr.graphql_test.model.TaskModel.TaskInfo;
 import com.maxdlr.graphql_test.model.TaskModel.TaskInput;
-import com.maxdlr.graphql_test.service.TaskService;
+import com.maxdlr.graphql_test.service.models.TaskService;
 
 @Controller
 public class TaskController {

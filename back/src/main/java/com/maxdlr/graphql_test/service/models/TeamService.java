@@ -1,4 +1,4 @@
-package com.maxdlr.graphql_test.service;
+package com.maxdlr.graphql_test.service.models;
 
 import org.springframework.stereotype.Service;
 

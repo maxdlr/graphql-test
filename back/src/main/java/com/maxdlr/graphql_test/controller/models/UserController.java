@@ -1,4 +1,4 @@
-package com.maxdlr.graphql_test.controller;
+package com.maxdlr.graphql_test.controller.models;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 
 import com.maxdlr.graphql_test.model.UserModel.UserInfo;
 import com.maxdlr.graphql_test.model.UserModel.UserInput;
-import com.maxdlr.graphql_test.service.UserService;
+import com.maxdlr.graphql_test.service.models.UserService;
 
 @Controller
 public class UserController {
