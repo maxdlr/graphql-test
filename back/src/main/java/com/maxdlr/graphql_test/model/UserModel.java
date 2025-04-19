@@ -37,14 +37,6 @@ public class UserModel {
       return taskTypes;
     }
 
-    public void addTaskType(String type) {
-      taskTypes.add(type);
-    }
-
-    public void removeTaskType(String type) {
-      taskTypes.removeIf(listType -> listType == type);
-    }
-
     public Integer getTeamId() {
       return teamId;
     }
