@@ -84,7 +84,7 @@ public class UserService extends CrudService<UserRepository, UserMapper, UserEnt
 
     List<String> types = user.getTaskTypes();
 
-    types.removeIf(listType -> listType == type);
+    types.remove(type);
 
     user.setTaskTypes(types);
 
