@@ -34,4 +34,9 @@ public class TaskController {
       @Argument TaskInput task) {
     return this.taskService.create(task);
   }
+
+  @MutationMapping
+  public TaskInfo UpdateTask(@Argument TaskInput task) throws Exception {
+    return this.taskService.update(task);
+  }
 }

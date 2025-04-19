@@ -22,12 +22,29 @@ public class TaskModel {
   }
 
   public record TaskInput(
+      Integer id,
       String title,
       String description,
       Integer teamId,
       String type) {
+    public Integer getId() {
+      return id;
+    }
+
+    public String getTitle() {
+      return title;
+    }
+
+    public String getDescription() {
+      return description;
+    }
+
     public Integer getTeamId() {
       return teamId;
+    }
+
+    public String getType() {
+      return type;
     }
   }
 }
