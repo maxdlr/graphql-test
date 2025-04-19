@@ -1,0 +1,12 @@
+name: task create
+method: POST
+url: http://localhost:8080/graphql
+body:
+  content: |-
+    {
+      "query": "mutation CreateTask { CreateTask( task: { title: \"my new task\", description: \"my task description\", type: \"issue\", teamId: 1 } ) { id title description team { id name createdAt } type createdAt } }"
+    }
+  content_type: application/json
+headers:
+- name: content-type
+  value: application/json

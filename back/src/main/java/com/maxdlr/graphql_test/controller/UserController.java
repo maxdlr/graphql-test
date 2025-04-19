@@ -34,4 +34,24 @@ public class UserController {
       @Argument UserInput user) {
     return this.userService.create(user);
   }
+
+  @MutationMapping()
+  public UserInfo UpdateUser(
+      @Argument UserInput user) throws Exception {
+    return this.userService.update(user);
+  }
+
+  @MutationMapping
+  public UserInfo AddTaskTypeToUser(
+      @Argument Integer id,
+      @Argument String type) throws Exception {
+    return this.userService.addTaskType((long) id, type);
+  }
+
+  @MutationMapping
+  public UserInfo RemoveTaskTypeToUser(
+      @Argument Integer id,
+      @Argument String type) throws Exception {
+    return this.userService.removeTaskType((long) id, type);
+  }
 }

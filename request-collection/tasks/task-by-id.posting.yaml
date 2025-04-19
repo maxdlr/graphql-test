@@ -1,0 +1,13 @@
+name: task by id
+description: Get all users
+method: POST
+url: http://localhost:8080/graphql
+body:
+  content: |-
+    {
+      "query": "query GetTask { GetTask(id: 1) { id title description team { id name createdAt } type createdAt }}"
+    }
+  content_type: application/json
+headers:
+- name: content-type
+  value: application/json

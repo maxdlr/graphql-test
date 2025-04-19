@@ -33,4 +33,9 @@ public class TeamController {
   public TeamInfo CreateTeam(@Argument TeamInput team) {
     return this.teamService.create(team);
   }
+
+  @MutationMapping
+  public TeamInfo UpdateTeam(@Argument TeamInput team) {
+    return this.teamService.update(team);
+  }
 }

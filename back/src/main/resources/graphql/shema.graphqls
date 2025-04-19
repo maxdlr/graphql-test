@@ -1,33 +1,62 @@
 type Query {
   GetUser(id: ID): UserInfo
   GetTeam(id: ID): TeamInfo
+  GetTask(id: ID): TaskInfo
   GetAllUsers: [UserInfo]!
   GetAllTeams: [TeamInfo]!
+  GetAllTasks: [TaskInfo]!
 }
 
 type Mutation {
-  CreateUser(user: UserInput): UserInfo!
-  CreateTeam(team: TeamInput): TeamInfo!
+  CreateUser(user: UserInput): UserInfo
+  CreateTeam(team: TeamInput): TeamInfo
+  CreateTask(task: TaskInput): TaskInfo
+  UpdateTeam(team: TeamInput): TeamInfo
+  UpdateUser(user: UserInput): UserInfo
+  UpdateTask(task: TaskInput): TaskInfo
+  AddTaskTypeToUser(id: ID, type: String): UserInfo
+  RemoveTaskTypeToUser(id: ID, type: String): UserInfo
 }
 
 input UserInput {
-  username: String,
-  teamId: ID,
+  id: ID
+  username: String
+  teamId: ID
+  taskTypes: [String]
 }
 
 input TeamInput {
-  name: String,
+  id: ID
+  name: String
+}
+
+input TaskInput {
+  id: ID
+  title: String
+  description: String
+  teamId: ID
+  type: String
 }
 
 type TeamInfo {
-  id: ID,
-  name: String,
+  id: ID
+  name: String
   createdAt: String
 }
 
-type UserInfo{
-  id: ID,
-  username: String,
-  team: TeamInfo,
+type UserInfo {
+  id: ID
+  username: String
+  team: TeamInfo
+  taskTypes: [String]
+  createdAt: String
+}
+
+type TaskInfo {
+  id: ID
+  title: String
+  description: String
+  team: TeamInfo
+  type: String
   createdAt: String
 }

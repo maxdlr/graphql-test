@@ -1,0 +1,12 @@
+name: task edit
+method: POST
+url: http://localhost:8080/graphql
+body:
+  content: |-
+    {
+    "query": "mutation UpdateTask { UpdateTask( task: { id: 1, title: \"This edited task\", description: \"edited description\", teamId: 1, type: \"pull-request-edited\" } ) { id title description team { id name createdAt } type createdAt } }"
+    }
+  content_type: application/json
+headers:
+  - name: content-type
+    value: application/json
