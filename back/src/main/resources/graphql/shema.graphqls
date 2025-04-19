@@ -14,6 +14,8 @@ type Mutation {
   UpdateTeam(team: TeamInput): TeamInfo
   UpdateUser(user: UserInput): UserInfo
   UpdateTask(task: TaskInput): TaskInfo
+  AddTaskTypeToUser(id: ID, type: String): UserInfo
+  RemoveTaskTypeToUser(id: ID, type: String): UserInfo
 }
 
 input UserInput {

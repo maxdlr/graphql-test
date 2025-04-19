@@ -1,7 +1,9 @@
 package com.maxdlr.graphql_test.service;
 
+import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -50,6 +52,41 @@ public class UserService extends CrudService<UserRepository, UserMapper, UserEnt
       }
       user.setTeam(team);
     }
+
+    final UserEntity savedUser = this.repository.save(user);
+
+    return this.mapper.toRecordInfo(user);
+  }
+
+  public UserInfo addTaskType(long id, String type) throws Exception {
+    UserEntity user = this.repository.findOneById(id);
+
+    if (user == null) {
+      throw new Exception("Cannot find user");
+    }
+
+    List<String> types = user.getTaskTypes();
+    types.add(type);
+
+    user.setTaskTypes(types);
+
+    final UserEntity savedUser = this.repository.save(user);
+
+    return this.mapper.toRecordInfo(user);
+  }
+
+  public UserInfo removeTaskType(long id, String type) throws Exception {
+    UserEntity user = this.repository.findOneById(id);
+
+    if (user == null) {
+      throw new Exception("Cannot find user");
+    }
+
+    List<String> types = user.getTaskTypes();
+
+    types.removeIf(listType -> listType == type);
+
+    user.setTaskTypes(types);
 
     final UserEntity savedUser = this.repository.save(user);
 
